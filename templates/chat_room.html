@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+
+.material-icons.md-48 { font-size: 48px; }
+
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <title>DMLab's Chat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body>
+
+    <div class="chat_wrap">
+        <div class="header">
+            <input type="text" id="user_id"> CHAT'S WITH <span id="cb_name">AI</span>
+        </div>
+        <div class = "grid-container">
+            
+            <!-- <div class = "chat" id = "chat1">
+                <div id = 'closeBtn_class'>
+                    <button class = "close_button" type="button">X</button>
+                </div>
+
+                1
+                <ul>
+                    
+                </ul>
+            </div> --> 
+
+            <div class = "popup" id = "adding" >
+                <div class = "button_adding" id="addBoxBtn" type="button">
+                    <i class="material-icons md-48">add</i>
+                </div>
+                <div class = "popuptext" id = "myPopup" class = "overlay">
+                    <form action="selectai">
+                        <label for="ai-names">Choose a model you would like to use for your chatbot:</label>
+                        <select name="ai-name" id="ai-names">
+                            <option value="javascript">Select an AI model</option>
+                            <option value="text-curie-001">text-curie-001</option>
+                            <option value="text-babbage-001">text-babbage-001</option>
+                            <option value="text-ada-001">text-ada-001</option>
+                            <option value="text-davinci-002">text-davinci-002</option>
+                            <option value="text-davinci-003">text-davinci-003</option>
+                        </select>
+                        <input type="button" id="ai_type_select" value="Submit" />
+                    </form>
+
+                </div>
+            </div>
+            
+        </div>
+        
+
+        <div class="input-div">
+            <textarea placeholder="First input your name on the top of the screen" disabled="disabled" id="msg_chat"></textarea>
+        </div>
+
+        <!-- format -->
+
+        <div class="format">
+            <ul>
+                <li>
+                    <div class="sender">
+                        <span></span>
+                    </div>
+                    <div class="message">
+                        <span></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <div id = 'element_template'>
+            <button class = "close_button" type="button">X</button>
+            <input type="checkbox" class="checkboxname" value="value" checked />
+        </div>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous">
+    </script>
+
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+
+
+</body>
+
+</html>
