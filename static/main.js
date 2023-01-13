@@ -281,3 +281,16 @@ selectAiBtn.addEventListener('click', e=>{
     updateListeners()
     console.log('listeners updated!');
   });
+
+//making the timestamp
+const displayTime = document.querySelector(".display-time");
+
+function showTime() {
+  let time = new Date();
+  displayTime.innerText = time.toLocaleTimeString("en-KR", { hour12: false });
+  displayTime.innerText +=' '
+  displayTime.innerText+='  Sent'
+  setTimeout(showTime, 1000);
+}
+
+showTime();
