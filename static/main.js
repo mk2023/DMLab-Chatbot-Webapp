@@ -224,6 +224,15 @@ addBoxBtn.addEventListener('click', e => {
   document.getElementById("myPopup").style.display = "block";
 });
 
+//if the aboutskye button is clicked, then the about skye popup is shown
+const aboutboxbtn = document.querySelector('.button_aboutskye');
+const popupaboutskye = document.querySelector('.popupforskye');
+aboutboxbtn.addEventListener('click', e=> {
+    e.preventDefault();
+    document.querySelector(".popupforskye").style.display = "block";
+});
+
+
 //created this dictionary to keep track how many of each chatbot models there are (to make different ids for each chatbox)
 dict = {
     "text-curie-001": 1,
@@ -294,3 +303,17 @@ function showTime() {
 }
 
 showTime();
+
+//hiding the aboutskye popup after clicking anywhere on the screen
+var wholepage = document.querySelector('.popupforskye');
+if(wholepage.style.display!="none"){
+    document.addEventListener("click", function(event) {
+        // If user clicks inside the element, do nothing
+        if(event.target.closest(".popupforskye")) return;
+        if(event.target.closest(".button_aboutskye")) return;
+        if(wholepage.style.display =="none") return;
+        // If user clicks outside the element, hide it!
+        wholepage.style.display = "none";
+        document.querySelector('.button_aboutskye').style.display = "block"
+    });    
+}

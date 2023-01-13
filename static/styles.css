@@ -270,3 +270,32 @@ input[type="checkbox"] {
   margin: 0px 0;
   display: block;
 }
+
+.button_aboutskye{
+  background-color: white;
+  right: 53px;
+  height: 40px;
+  width: 100px;
+  color: black;
+  font-size: 15px;
+  display: inline;
+  position: fixed;
+  border-radius: 4px;
+  top: 10px
+}
+
+.popupforskye{
+  display:none;
+  width: 260px;
+  height: 260px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 2;
+  top:10px;
+  right: 30px;
+  font-size:12px;
+}
