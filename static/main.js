@@ -21,18 +21,22 @@ const Chat = (function() {
                             let user_id = document.getElementById('user_id').value
 
                             //making inputs and outputs
+                            
                             for(let i = 0; i<arrayofcheckbox.length-1; i++){
+                                var number = 1;
                                 if(arrayofcheckbox[i].checked==true)
                                 {
                                     chatbox = arrayofcheckbox[i].parentNode.parentNode;
-                                    sendMessage(message, chatbox.id);
+                                    sendMessage(message, chatbox.id, number);
                                 }
                             }
+                            
                             for(let i = 0; i<arrayofcheckbox.length-1; i++){
+                                number = 2;
                                 if(arrayofcheckbox[i].checked==true)
                                 {
                                     chatbox = arrayofcheckbox[i].parentNode.parentNode;
-                                    sendMessage_chat(user_id, message, chatbox);
+                                    sendMessage_chat(user_id, message, chatbox, number);
                                 }
                             }
 
@@ -62,9 +66,15 @@ const Chat = (function() {
     }
 
     // creating a message tag
-    function createMessageTag(LR_className, senderName, message) {
+    function createMessageTag(LR_className, senderName, message, number) {
         // bringing the initially created template
-        let target_li = document.querySelector('div.format ul li');
+        if(number==1){
+            target_li = document.querySelector('div.format_right ul li');
+        }
+        else{
+            target_li = document.querySelector('div.format_left ul li');
+        }
+
         let chatLi = target_li.cloneNode(true); //putting the paramter "true" clones all the things in the node will be copied
 
         chatLi.classList.add(LR_className);
@@ -79,10 +89,10 @@ const Chat = (function() {
     }
 
     // adding the message tag
-    function appendMessageTag(LR_className, senderName, message, chatbox_id) {
+    function appendMessageTag(LR_className, senderName, message, chatbox_id, number) {
         target = 0;
         let chatbox = document.querySelector('#'+ chatbox_id);
-        chatLi = createMessageTag(LR_className, senderName, message);
+        chatLi = createMessageTag(LR_className, senderName, message, number);
 
         //the message tag is added to the target element
         var target = chatbox.querySelector('ul');
@@ -95,10 +105,10 @@ const Chat = (function() {
 
     function scrolltoTop() {
         window.scroll({top: 0, left: 0, behavior: 'smooth'});
-      }
+    }
     
     //function that connects with the server
-    function request_api_chat(user_id, user_says, secondClass, _id_chatbox) {
+    function request_api_chat(user_id, user_says, secondClass, _id_chatbox, number) {
         var myHeaders = {
             'Content-Type': 'application/json',
         }
@@ -109,7 +119,6 @@ const Chat = (function() {
             "user_input": user_says,
             "ai_name": secondClass,
             "id_ai_name": _id_chatbox,
-
         }
         
         let msg_textarea = document.getElementById('msg_chat')
@@ -143,7 +152,7 @@ const Chat = (function() {
                     "message": chat_message['skye_says'],
                     "id_ai_name": chat_message['id_model_name'],
                 };
-                receive_chat(data);
+                receive_chat(data, number);
 
             })
             .catch(error => console.log('error', error))
@@ -152,21 +161,21 @@ const Chat = (function() {
     // requests api from flask server
     
     // sending the inputed message to screen
-    function sendMessage(message, chatbox_id) {
+    function sendMessage(message, chatbox_id, number) {
 
         const data = { //sent by python file
             "senderName": "user",
             "message": message,
             "chatbox": chatbox_id
         };
-        receive(data);
+        receive(data, number);
     }
 
     //sending inputted message to server
-    function sendMessage_chat(user_id, message, chatbox) {
+    function sendMessage_chat(user_id, message, chatbox, number) {
         secondClass = chatbox.classList[1];
         chatbox_id = chatbox.id;
-        request_api_chat(user_id, message, secondClass, chatbox_id);
+        request_api_chat(user_id, message, secondClass, chatbox_id, number);
     }
 
     function clearTextarea() {
@@ -177,16 +186,16 @@ const Chat = (function() {
     }
 
     // receiving inputted message by user
-    function receive(data) {
+    function receive(data, number) {
         const LR = (data.senderName != myName) ? "left" : "right";
-        appendMessageTag("right", data.senderName, data.message, data.chatbox);
+        appendMessageTag("right", data.senderName, data.message, data.chatbox, number);
     }
 
     // receiving chatbot message
-    function receive_chat(data) {
+    function receive_chat(data, number) {
         const LR = (data.senderName != myName) ? "left" : "right";
         console.log(data)
-        appendMessageTag("left", data.senderName, data.message, data.id_ai_name);
+        appendMessageTag("left", data.senderName, data.message, data.id_ai_name, number);
     }
 
     //makes a function in Chat() in public (initially private)
@@ -317,3 +326,15 @@ if(wholepage.style.display!="none"){
         document.querySelector('.button_aboutskye').style.display = "block"
     });    
 }
+
+///ways to improve
+//1. timestamp --> done (added to new one)
+//2. about skye popup (idk how to make it go in the place i want it to go to) --> done 
+//3. making like a section in the popup where you can just type the ai model name instead of just selecting one ("other" button)
+
+//4. kinda wannna make a "read" text when the text is read (with the two check signs too)
+//5. make the textboxes more like textboxes and them popping up (for visual pleasure:)) -> made them look like chat bubbles
+//6. organize css file (too much useless stuff) --> done
+//7. css battle website
+//8. prompt engineering (WARMUP *facts about skye*)
+//9. db (storing information)
