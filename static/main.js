@@ -331,9 +331,10 @@ if(wholepage.style.display!="none"){
 //1. timestamp --> done (added to new one)
 //2. about skye popup (idk how to make it go in the place i want it to go to) --> done 
 //3. making like a section in the popup where you can just type the ai model name instead of just selecting one ("other" button)
-
 //4. kinda wannna make a "read" text when the text is read (with the two check signs too)
-//5. make the textboxes more like textboxes and them popping up (for visual pleasure:)) -> made them look like chat bubbles
+
+
+//5. make the textboxes more like textboxes and them popping up (for visual pleasure:)) -> made them look like chat bubbles +fade-in
 //6. organize css file (too much useless stuff) --> done
 //7. css battle website
 //8. prompt engineering (WARMUP *facts about skye*)

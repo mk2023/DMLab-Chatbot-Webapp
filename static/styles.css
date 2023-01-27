@@ -69,6 +69,7 @@
   color: #c06154;
   font-family: arial;
   position: relative;
+  animation: fadeIn 1s ease-in both;
 }
 
 .chat_wrap .input-div {
