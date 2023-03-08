@@ -18,7 +18,7 @@ _tempdir = tempfile.gettempdir()
 app.config['OPENAI_KEY'] = os.environ.get('OPENAI_KEY')
 app.config['TURNS'] = int(os.environ.get('TURNS'))
 
-app.config['WARMUP'] = os.environ.get('WARMUP')
+##app.config['WARMUP'] = os.environ.get('WARMUP')
 
 app.config['TEMPERATURE'] = float(os.environ.get('TEMPERATURE'))
 app.config['MAX_TOKENS'] = int(os.environ.get('MAX_TOKENS'))
@@ -45,11 +45,14 @@ def skye_chat():
     name = body['user_id']
     model_name = body['ai_name']
     id_model_name = body['id_ai_name']
+    warmup = body['warmup']
     
     text_temp = text
     text_create = prompt_redesign(text_temp, name, app.config['TURNS'])
 
-    prompt_text = app.config['WARMUP']+text_create 
+    #prompt_text = app.config['WARMUP']+text_create
+    prompt_text = warmup+text_create
+    #text create = past conversations
 
     # openai 대답호출
     response = openai.Completion.create(
@@ -79,7 +82,6 @@ def skye_chat():
 @app.route('/chatting')
 def chatting():
     return render_template('chat_room.html')
-
 
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=8080, debug=True)

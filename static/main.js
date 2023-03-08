@@ -108,7 +108,7 @@ const Chat = (function() {
     }
     
     //function that connects with the server
-    function request_api_chat(user_id, user_says, secondClass, _id_chatbox, number) {
+    function request_api_chat(user_id, user_says, secondClass, _id_chatbox, number, warmuptext) {
         var myHeaders = {
             'Content-Type': 'application/json',
         }
@@ -119,6 +119,7 @@ const Chat = (function() {
             "user_input": user_says,
             "ai_name": secondClass,
             "id_ai_name": _id_chatbox,
+            "warmup": warmuptext
         }
         
         let msg_textarea = document.getElementById('msg_chat')
@@ -175,7 +176,8 @@ const Chat = (function() {
     function sendMessage_chat(user_id, message, chatbox, number) {
         secondClass = chatbox.classList[1];
         chatbox_id = chatbox.id;
-        request_api_chat(user_id, message, secondClass, chatbox_id, number);
+        warmuptext = document.getElementById("warmup").value;
+        request_api_chat(user_id, message, secondClass, chatbox_id, number, warmuptext);
     }
 
     function clearTextarea() {
@@ -226,21 +228,22 @@ selectedainame = 0; //variable that will the identify the type of chatbot ai tha
 const containertmp = document.querySelector('.grid-container');
 const addBoxBtn = document.querySelector('#addBoxBtn');
 const popup  = document.getElementById("myPopup");
-
-//if the plus button is clicked, then the popup is shown
-addBoxBtn.addEventListener('click', e => {
-  e.preventDefault();
-  document.getElementById("myPopup").style.display = "block";
-});
+const selectAiBtn = document.querySelector('#ai_type_select');
+const selectwarmup = document.querySelector('#change_warmup');
 
 //if the aboutskye button is clicked, then the about skye popup is shown
 const aboutboxbtn = document.querySelector('.button_aboutskye');
 const popupaboutskye = document.querySelector('.popupforskye');
 aboutboxbtn.addEventListener('click', e=> {
     e.preventDefault();
-    document.querySelector(".popupforskye").style.display = "block";
+    document.querySelector(".popupforskye").style.display = "flex";
 });
 
+//if the plus button is clicked, then the popup is shown
+addBoxBtn.addEventListener('click', e => {
+  e.preventDefault();
+  document.getElementById("myPopup").style.display = "block";
+});
 
 //created this dictionary to keep track how many of each chatbot models there are (to make different ids for each chatbox)
 dict = {
@@ -250,9 +253,14 @@ dict = {
     "text-davinci-002": 1,
     "text-davinci-003":1
   };
-  
-const selectAiBtn = document.querySelector('#ai_type_select');
 
+//making the warmup popup appear after selecting the ai name
+// selectAiBtn.addEventListener('click', e=>{
+//     e.preventDefault();
+//     document.getElementById("myPopup").style.display = "none";
+//     document.querySelector(".prompt_changer").style.display = "block";
+// })
+var containerpopup = document.querySelector(".popup");
 //creating a new box after selecting the chatbot model name in the popup
 selectAiBtn.addEventListener('click', e=>{
     var listtmp = document.getElementById("ai-names"); //ai-nane selected from dropdown
@@ -283,16 +291,17 @@ selectAiBtn.addEventListener('click', e=>{
     newBox.appendChild(ul);
 
     //getting rid of the popup on the screen so that instead of the popup, the chatbox will appear
-    const deleting = document.querySelector('.popup');
-    document.getElementById("myPopup").style.display = "none";  
-    containertmp.removeChild(deleting);
+    //const deleting = document.querySelector('#addBoxBtn');
+    document.getElementById("myPopup").style.display = "none";   
+    //containerpopup.remove(deleting); // ---> not working, have to take out prompt_change outside of popup and do it again
     
     //adding the element "newBox" to the screen
-    containertmp.appendChild(newBox);
+    containertmp.prepend(newBox);
+    
+    //containertmp.insertBefore(newBox, containerpopup);
 
     //add the plus sign to the screen
-    containertmp.appendChild(deleting);
-
+    //containerpopup.appendChild(deleting);
     console.log('new box added!');
 
     //checking to see if any boxes should be deleted due to the user clicking its "close" button
@@ -302,7 +311,6 @@ selectAiBtn.addEventListener('click', e=>{
 
 //making the timestamp
 const displayTime = document.querySelector(".display-time");
-
 function showTime() {
   let time = new Date();
   displayTime.innerText = time.toLocaleTimeString("en-KR", { hour12: false });
@@ -310,12 +318,11 @@ function showTime() {
   displayTime.innerText+='  Sent'
   setTimeout(showTime, 1000);
 }
-
 showTime();
 
 //hiding the aboutskye popup after clicking anywhere on the screen
 var wholepage = document.querySelector('.popupforskye');
-if(wholepage.style.display!="none"){
+if(wholepage.style.display != "none"){
     document.addEventListener("click", function(event) {
         // If user clicks inside the element, do nothing
         if(event.target.closest(".popupforskye")) return;
@@ -324,7 +331,7 @@ if(wholepage.style.display!="none"){
         // If user clicks outside the element, hide it!
         wholepage.style.display = "none";
         document.querySelector('.button_aboutskye').style.display = "block"
-    });    
+    });
 }
 
 ///ways to improve
@@ -332,10 +339,12 @@ if(wholepage.style.display!="none"){
 //2. about skye popup (idk how to make it go in the place i want it to go to) --> done 
 //3. making like a section in the popup where you can just type the ai model name instead of just selecting one ("other" button)
 //4. kinda wannna make a "read" text when the text is read (with the two check signs too)
-
-
-//5. make the textboxes more like textboxes and them popping up (for visual pleasure:)) -> made them look like chat bubbles +fade-in
 //6. organize css file (too much useless stuff) --> done
-//7. css battle website
+//5. make the textboxes more like textboxes and them popping up (for visual pleasure:)) -> made them look like chat bubbles +fade-in
+//7. css battle website --> done
+
 //8. prompt engineering (WARMUP *facts about skye*)
 //9. db (storing information)
+//bit confusing bc the chatboxes you added go to the first, not the last.
+
+

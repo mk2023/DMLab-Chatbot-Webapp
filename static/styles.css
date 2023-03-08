@@ -115,7 +115,9 @@
     scroll-behavior: auto;
     height: 600px;
     width: 500px;
+    background-image: url("https://i.pinimg.com/originals/f2/97/28/f297286a3a4cc0a8010ae1cbfa9a079d.jpg");
 }
+
 
 div>.popup{
     height: 500px;
@@ -145,7 +147,7 @@ div>.popup{
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
   }
 
-  .close_button, .box1 {
+  .close_button{
     line-height: 12px;
     border-radius: 50%;
     width: 30px;
@@ -157,7 +159,7 @@ div>.popup{
     /* right: 1130px; */
     cursor: pointer;
     position: relative;
-        right: 200px;
+    right: 200px;
     bottom: 5px;
   }
   .close_button:hover {
@@ -195,8 +197,8 @@ div>.popup{
   .popup .popuptext {
     /* visibility: hidden; */
     display:none;
-    width: 260px;
-    height: 260px;
+    width: 449px;
+    height: 580px;
     background-color: #555;
     color: #fff;
     text-align: center;
@@ -204,6 +206,7 @@ div>.popup{
     padding: 8px 0;
     position: absolute;
     z-index: 1;
+    bottom: -60px;
   }
 
   #ai_type_select{
@@ -306,10 +309,9 @@ input[type="checkbox"] {
   border-radius: 6px;
   padding: 8px 0;
   position: absolute;
-  z-index: 2;
+  z-index: 5;
   top:10px;
   right: 30px;
-  font-size:12px;
 }
 
 .sb11:before {
@@ -366,4 +368,58 @@ input[type="checkbox"] {
   border-bottom: 10px solid transparent;
   right: -17px;
   bottom: 37%;
+}
+
+textarea {
+  width: 80%;
+  height: 300px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+  position: relative;
+  bottom: -3px;
+}
+
+#change_warmup{
+  background-color: #3A4D7A;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+div> .prompt_change{
+  visibility: none;
+  display: flex;
+  height: 500px;
+  width: 500px;
+  background-color: white;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color:white;
+  gap: 50px;
+}
+.prompt_changer{
+  cursor: pointer;
+  display: none;
+  width: 400px;
+  height: 400px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  font-size: 20px;
+}
+
+#warmup_instruct{
+  padding: 10px;
 }

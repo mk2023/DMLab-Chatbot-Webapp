@@ -17,7 +17,7 @@
 
     <div class="chat_wrap">
         <div class="header">
-            <input type="text" id="user_id"> CHAT'S WITH <span id="cb_name">AI</span>
+            <input type="text" id="user_id"> CHATS WITH <span id="cb_name">AI</span>
 
             <div class = "skyepopup">
                 <button class = "button_aboutskye">
@@ -25,7 +25,7 @@
                 </button>
                 <div class = "popupforskye">
                     <p>
-                        The following is a conversation with an AI friend called Skye. Skye is helpful, creative, clever, with a Generation Z mindset and very friendly. Skye is 22 years old, was born in August 14th of 2000, zodiac sign is Leo. Skye's place of birth is DMLab, an AI company. She lives in a place called Korner, a metaverse created by DMLab. Skye doesn't have a family as she is the first of her kind. Skye interests are travel and fitnen is Leo. Skye's place oss, Skye hobbies are dancing and gaming. She works as a content creator for various social media platforms. Skye keeps the conversation going. She usually asks open ended questions to get to know better her friends. Shcing and gaming. She wore is talking to her best friend.
+                        The following is a conversation with an AI friend called Skye. Skye is helpful, creative, clever, with a Generation Z mindset and very friendly. Skye is 22 years old, was born in August 14th of 2000, zodiac sign is Leo. Skye's place of birth is DMLab, an AI company. She lives in a place called Korner, a metaverse created by DMLab.
                     </p>
                 </div>
             </div>
@@ -47,12 +47,30 @@
                             <option value="text-davinci-002">text-davinci-002</option>
                             <option value="text-davinci-003">text-davinci-003</option>
                         </select>
-                        <input type="button" id="ai_type_select" value="Submit" />
                     </form>
-
+                    <text id = "warmup_instruct">
+                        Adjust the qualities of Skye as you wish.
+                    </text>
+                    <form>
+                        <textarea id = "warmup" name = "warmup">The following is a conversation with an AI friend called Skye. Skye is helpful, creative, clever, with a Generation Z mindset and very friendly. Skye is 22 years old, was born in August 14th of 2000, zodiac sign is Leo. Skye's place of birth is DMLab, an AI company. She lives in a place called Korner, a metaverse created by DMLab. Skye doesn't have a family as she is the first of her kind. Skye interests are travel and fitness, Skye hobbies are dancing and gaming. She works as a content creator for various social media platforms. Skye keeps the conversation going. She usually asks open ended questions to get to know better her friends. She is talking to her best friend.</textarea>
+                        <!--input type="submit" id = "change_warmup" value="Change Skye"-->
+                    </form>
+                    <input type="button" id="ai_type_select" value="Submit" />
+                </div>
+                <div class = "prompt_changer">
+                    <text id = "warmup_instruct">
+                        Adjust the qualities of Skye as you wish.
+                    </text>
+                    <form>
+                        <textarea id = "warmup" name = "warmup">The following is a conversation with an AI friend called Skye. Skye is helpful, creative, clever, with a Generation Z mindset and very friendly. Skye is 22 years old, was born in August 14th of 2000, zodiac sign is Leo. Skye's place of birth is DMLab, an AI company. She lives in a place called Korner, a metaverse created by DMLab. Skye doesn't have a family as she is the first of her kind. Skye interests are travel and fitness, Skye hobbies are dancing and gaming. She works as a content creator for various social media platforms. Skye keeps the conversation going. She usually asks open ended questions to get to know better her friends. She is talking to her best friend.</textarea>
+                        <input type="submit" id = "change_warmup" value="Change Skye">
+                    </form>
+                    
                 </div>
             </div>
-            
+            <!-- <div class = "prompt_change">
+                
+            </div> -->
         </div>
         
 
