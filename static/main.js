@@ -31,7 +31,7 @@ const Chat = (function() {
                                 }
                             }
                             
-                            for(let i = 0; i<arrayofcheckbox.length-1; i++){
+                            for(let i = arrayofcheckbox.length-2; i>=0; i--){
                                 number = 2;
                                 if(arrayofcheckbox[i].checked==true)
                                 {
@@ -176,7 +176,7 @@ const Chat = (function() {
     function sendMessage_chat(user_id, message, chatbox, number) {
         secondClass = chatbox.classList[1];
         chatbox_id = chatbox.id;
-        warmuptext = document.getElementById("warmup").value;
+        warmuptext =chatbox.getAttribute('data-prompt');
         request_api_chat(user_id, message, secondClass, chatbox_id, number, warmuptext);
     }
 
@@ -278,6 +278,8 @@ selectAiBtn.addEventListener('click', e=>{
 
     //assigning the chat class to the element "newBox"
     newBox.setAttribute('class', 'chat');
+    let prompt_tmp = document.getElementById("warmup").value;
+    newBox.setAttribute('data-prompt', prompt_tmp);
     //assigning another class
     newBox.classList.add(selectedainame);
 
@@ -297,8 +299,6 @@ selectAiBtn.addEventListener('click', e=>{
     
     //adding the element "newBox" to the screen
     containertmp.prepend(newBox);
-    
-    //containertmp.insertBefore(newBox, containerpopup);
 
     //add the plus sign to the screen
     //containerpopup.appendChild(deleting);
