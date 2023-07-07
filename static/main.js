@@ -6,8 +6,7 @@ const Chat = (function() {
 
         let name_input = document.getElementById('user_id')
         let msg_textarea = document.getElementById('msg_chat')
-        let msg_cont = document.querySelector('.input-div')
-        var arrayofchatbox = document.getElementsByClassName('chat');
+        let msg_cont = document.querySelector('.input-div');
         var arrayofcheckbox = document.getElementsByClassName('checkboxname');
         msg_cont.addEventListener('keydown', function(e){
                 for(var target = e.target; target && target != this; target = target.parentNode){
@@ -26,16 +25,17 @@ const Chat = (function() {
                                 var number = 1;
                                 if(arrayofcheckbox[i].checked==true)
                                 {
-                                    chatbox = arrayofcheckbox[i].parentNode.parentNode;
+                                    chatbox = arrayofcheckbox[i].parentNode.parentNode.parentNode;
                                     sendMessage(message, chatbox.id, number);
                                 }
                             }
                             
+
                             for(let i = arrayofcheckbox.length-2; i>=0; i--){
                                 number = 2;
                                 if(arrayofcheckbox[i].checked==true)
                                 {
-                                    chatbox = arrayofcheckbox[i].parentNode.parentNode;
+                                    chatbox = arrayofcheckbox[i].parentNode.parentNode.parentNode;
                                     sendMessage_chat(user_id, message, chatbox, number);
                                 }
                             }
@@ -213,16 +213,72 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
 //closing chatboxes that have its close button clicked
 const updateListeners = () =>{
-
+    
     var closeBoxBtn = document.getElementsByClassName('close_button');
+    var saveBtn = document.getElementsByClassName('save_button');
+    var modelBtn = document.getElementsByClassName('model_button');
+    var dialogueBtn = document.getElementsByClassName('dialogue_button');
+    var model_p = document.getElementsByClassName('popupformodel');
+    var dialogue_p = document.getElementsByClassName('popupfordialogue');
 
     for (const closebtn of closeBoxBtn) {
         closebtn.addEventListener('click', e=>{
             closebtn.parentNode.parentNode.remove();
         console.log('box closed!');
         });
-    }    
+    }   
+
+    for (const savebutton of saveBtn){
+        savebutton.addEventListener('click', e=>{
+            console.log('saved!');
+        })
+    }
+
+    
+    for (const modelname of modelBtn){
+        modelname.addEventListener('click', e=>{
+        console.log('model shown!');
+        const chatbox = modelname.parentNode;
+        chatbox.querySelector('.popupformodel').style.display = "block";
+        })
+    }
+
+    for (const dialoguename of dialogueBtn){
+        dialoguename.addEventListener('click', e=>{
+        console.log('model shown!');
+        const chatbox = dialoguename.parentNode;
+        chatbox.querySelector('.popupfordialogue').style.display = "block";
+        })
+    }
+
+    // for(const popup of model_p){
+    //     if(popup.style.display!='none'){
+    //         document.addEventListener("click", function(event){
+    //             const ancestor = popup.parentNode.parentNode.parentNode;
+    //             if(popup.contains(event.target)){
+    //                 return;
+    //             }
+    //             if(ancestor.contains(event.target)){
+    //                 popup.style.display = "none";
+    //             }
+    //         })
+    //     }
+    // }
+
+    // for(const popup of dialogue_p){
+    //     if(popup.style.display!='none'){
+    //         document.addEventListener("click", function(event){
+    //             const ancestor = popup.parentNode.parentNode.parentNode;
+    //             if(ancestor.contains(event.target)){
+    //                 popup.style.display = "none";
+    //             }
+    //         })
+    //     }
+    // }
 }
+
+
+
 
 selectedainame = 0; //variable that will the identify the type of chatbot ai that will be used for that chatbox
 const containertmp = document.querySelector('.grid-container');
@@ -245,6 +301,12 @@ addBoxBtn.addEventListener('click', e => {
   document.getElementById("myPopup").style.display = "block";
 });
 
+// var stringToHTML = function (str) {
+// 	var dom = document.createElement('div');
+// 	dom.innerHTML = str;
+// 	return dom;
+// };
+
 //created this dictionary to keep track how many of each chatbot models there are (to make different ids for each chatbox)
 dict = {
     "text-curie-001": 1,
@@ -266,19 +328,24 @@ selectAiBtn.addEventListener('click', e=>{
     var listtmp = document.getElementById("ai-names"); //ai-nane selected from dropdown
     selectedainame = listtmp.value;
 
-    let myText = document.createTextNode("AI model: " + selectedainame);
+    //let myText = document.createTextNode("AI model: " + selectedainame);
     var ul = document.createElement('ul');
 
     //making a new element, which will later become the chatbox itself
     let newBox = document.createElement('div');
-
+    
     //copying the elements template containing the close button and checkbox
-    const element_template = document.getElementById('element_template');
+    const element_template = document.getElementById('functions_tab');
     let element_clone = element_template.cloneNode(true);
+    element_clone.style.display='block';
+    element_clone.querySelector('.popupfordialogue').style.display = "none";
+    element_clone.querySelector('.popupformodel').style.display = "none";
+    element_clone.querySelector(".popupformodel").innerHTML = selectedainame;
 
     //assigning the chat class to the element "newBox"
     newBox.setAttribute('class', 'chat');
     let prompt_tmp = document.getElementById("warmup").value;
+    element_clone.querySelector(".popupfordialogue").innerHTML = prompt_tmp;
     newBox.setAttribute('data-prompt', prompt_tmp);
     //assigning another class
     newBox.classList.add(selectedainame);
@@ -289,7 +356,7 @@ selectAiBtn.addEventListener('click', e=>{
     
     //adding the button & checkmark, text, and ul to the element "newBox"
     newBox.append(element_clone); //uses the copied version of button & checkmark
-    newBox.appendChild(myText);
+    //newBox.appendChild(myText);
     newBox.appendChild(ul);
 
     //getting rid of the popup on the screen so that instead of the popup, the chatbox will appear
@@ -307,6 +374,7 @@ selectAiBtn.addEventListener('click', e=>{
     //checking to see if any boxes should be deleted due to the user clicking its "close" button
     updateListeners()
     console.log('listeners updated!');
+    document.documentElement.scrollTop = 0;
   });
 
 //making the timestamp
@@ -316,9 +384,21 @@ function showTime() {
   displayTime.innerText = time.toLocaleTimeString("en-KR", { hour12: false });
   displayTime.innerText +=' '
   displayTime.innerText+='  Sent'
-  setTimeout(showTime, 1000);
+  const myTimeout = setTimeout(showTime, 1000);
+  clearTimeout(myTimeout);
 }
 showTime();
+
+var tmp2 = document.getElementById("grid").getElementsByClassName("popupfordialogue");
+var tmpfor = document.getElementById("grid").getElementsByClassName("popupformodel");
+
+document.addEventListener("click", function(event){
+    if(event.target.closest(".chat")){
+        var clickedchat = event.target;
+        clickedchat.querySelector('.functions_tab').querySelector('.popupformodel').style.display = "none";
+        clickedchat.querySelector('.functions_tab').querySelector('.popupfordialogue').style.display = "none";
+    }
+})
 
 //hiding the aboutskye popup after clicking anywhere on the screen
 var wholepage = document.querySelector('.popupforskye');
@@ -334,17 +414,18 @@ if(wholepage.style.display != "none"){
     });
 }
 
-///ways to improve
-//1. timestamp --> done (added to new one)
-//2. about skye popup (idk how to make it go in the place i want it to go to) --> done 
-//3. making like a section in the popup where you can just type the ai model name instead of just selecting one ("other" button)
-//4. kinda wannna make a "read" text when the text is read (with the two check signs too)
-//6. organize css file (too much useless stuff) --> done
-//5. make the textboxes more like textboxes and them popping up (for visual pleasure:)) -> made them look like chat bubbles +fade-in
-//7. css battle website --> done
+// for(chatbox in chatboxes){
+//     document.addEventListener("click", function(event){
+//         if(event.target.closest(".chat")){
+//             var tmp = chatbox.parentNode;
 
-//8. prompt engineering (WARMUP *facts about skye*)
-//9. db (storing information)
-//bit confusing bc the chatboxes you added go to the first, not the last.
+//             if(chatbox.querySelector('.popupformodel').style.display!="none" || chatbox.querySelector('.popupfordialogue').style.display!="none"){
+//                 chatbox.querySelector('.popupformodel').style.display = "none";
+//                 chatbox.querySelector('.popupfordialogue').style.display = "none";
+//             }
+//         }
+//     })
+// }
 
-
+//won't work for some reason...
+//have to create popups for both the model name and the dialogue we put in...

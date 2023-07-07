@@ -7,19 +7,22 @@
 @import "compass/css3";
 
 .chat_wrap .header {
-    font-size: 18px;
+    font-size: 22px;
     padding: 18px 0;
-    background: #B8C9F0;
-    color: white;
+    background: #424f4a;
+    color: #ecd2c5;
     text-align: center;
     position: fixed;
     width: 100%;
     top:0;
+    z-index: 5;
+    font-weight:700;
 }
 
-/*.chat_wrap .chat {
-    padding-bottom: 80px;
-}*/
+body{
+  background-color: #151c19;
+  font-family: 'Figtree', system-ui, sans-serif;
+}
 
 .chat_wrap .chat ul {
     width: 100%;
@@ -48,27 +51,19 @@
 }
 
 .chat_wrap .chat ul li>div.message {
-    /* display: inline-block;
-    word-break: break-all;
-    margin: 5px 20px;
-    max-width: 75%;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #FCFCFC;
-    color: #555;
-    text-align: left; */
-    width: 300px;
-    margin: 5px 20px;
-    display: inline-block;
-    word-break: break-all;
-  border: 4px solid #c06154;
-  background-color: #FCFCFC;
+  width: 300px;
+  margin: 5px 20px;
+  display: inline-block;
+  word-break: break-all;
+  border: 4px solid #ecd2c5;
+  background-color: #ecd2c5;
   padding: 20px;
   text-align: center;
-  font-weight: 400;
-  color: #c06154;
-  font-family: arial;
+  font-weight: 600;
+  color: #8a7966;
+  /* font-family: arial; */
   position: relative;
+  border-radius: 15%;
   animation: fadeIn 1s ease-in both;
 }
 
@@ -78,7 +73,7 @@
     width: 100%;
     background-color: #FFF;
     text-align: center;
-    border-top: 1px solid #F18C7E;
+    border-top: 1px solid #151c19;
 }
 
 .chat_wrap .input-div>textarea {
@@ -94,20 +89,23 @@
 
 .grid-container {
     display: flex;
-    background-color: white;
+    /*background-color: white;*/
     gap: 50px;
     flex-wrap: wrap;
     justify-content: space-evenly;
     padding-bottom: 70px;
-    margin: 30px;
-    padding-top: 50px;
+    margin: 30px 0px 30px 0px;
+    padding-top: 80px;
 }
   
 .grid-container > div {
-    background-color: #F4CEC8;
+    background-color: #424f4a;
     text-align: center;
     font-size: 30px;
     padding: 10px;
+    color: #c0ab92;
+    font-weight: bold;
+    border-radius: 30px;
 }
 
 .chat{
@@ -115,7 +113,7 @@
     scroll-behavior: auto;
     height: 600px;
     width: 500px;
-    background-image: url("https://i.pinimg.com/originals/f2/97/28/f297286a3a4cc0a8010ae1cbfa9a079d.jpg");
+    
 }
 
 
@@ -126,7 +124,7 @@ div>.popup{
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
-    background-color:white;
+    background-color: #151c19;
     gap: 50px;
 }
 
@@ -138,29 +136,28 @@ div>.popup{
     cursor: pointer;
     background: none;
     border: 1px solid;
-    color: #5256D9;
+    color:  #ecd2c5;
     cursor: pointer;
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
+    border-width: thick;
   }
   .button_adding:hover{
+    transform: scale(1.2);
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
   }
 
   .close_button{
-    line-height: 12px;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    font-size: 8pt;
-    font-family: tahoma;
-    margin-top: 1px;
-    margin-right: 2px;
-    /* right: 1130px; */
+    background-color: #ecd2c5;
+    border: none;
+    color: #8a7966;
+    padding: 12px 16px;
+    font-size: 12px;
     cursor: pointer;
     position: relative;
-    right: 200px;
+    right: 32%;
     bottom: 5px;
+    top: -7%;
   }
   .close_button:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
@@ -199,21 +196,25 @@ div>.popup{
     display:none;
     width: 449px;
     height: 580px;
-    background-color: #555;
-    color: #fff;
+    background-color: #dbd6d0;
+    color: #91816e;
     text-align: center;
     border-radius: 6px;
     padding: 8px 0;
     position: absolute;
     z-index: 1;
     bottom: -60px;
+    font-weight: bold;
   }
 
   #ai_type_select{
-    width: 100px;
-    height:40px;
-    background-color: #F18C7E;
+    font-size: 20px;
+    width: 114px;
+    height: 48px;
+    background-color: #C0AB92;
     color: white;
+    font-weight: 700;
+    border: #C0AB92;
   }
   
   /* Toggle this class - hide and show the popup */
@@ -238,7 +239,7 @@ div>.popup{
 
 
   /* .slideOne */
-  label > input[type="checkbox"] {
+  /* label > input[type="checkbox"] {
     display: none;
   }
 
@@ -259,26 +260,19 @@ div>.popup{
   visibility: hidden;
 }
 
-label > input[type="checkbox"]:checked + *::before {
-  content: "✓";
-  color: white;
-  text-align: center;
-  background: teal;
-  border-color: teal;
-  size: 10px;
-}
-label > input[type="checkbox"]:checked + * {
-  color: teal;
-}
 input[type="checkbox"] {
+  
   width: 20px;
-    height: 20px;
-    background: white;
-    border-radius: 5px;
-    border: 2px solid #555;
-    position: relative;
-    right: 200px;
-}
+  height: 20px;
+  background: white;
+  border-radius: 5px;
+  border: 2px solid #555;
+  cursor: pointer;
+  position: relative;
+  right: 12%;
+  bottom: -1px;
+
+} */
 
 .display-time{
   font-size: 10px;
@@ -287,16 +281,23 @@ input[type="checkbox"] {
 }
 
 .button_aboutskye{
-  background-color: white;
+  background-color: #C0AB92;
   right: 53px;
   height: 40px;
-  width: 100px;
-  color: black;
+  width: 108px;
+  font-weight:700;
+  color: white;
   font-size: 15px;
   display: inline;
   position: fixed;
   border-radius: 4px;
-  top: 10px
+  top: 10px;
+  border-color:#C0AB92;
+}
+
+.button_aboutskye:hover {
+  transform: scale(1.2);
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 .popupforskye{
@@ -309,9 +310,10 @@ input[type="checkbox"] {
   border-radius: 6px;
   padding: 8px 0;
   position: absolute;
-  z-index: 5;
+  z-index: 9;
   top:10px;
   right: 30px;
+  font-size: 17px;
 }
 
 .sb11:before {
@@ -320,11 +322,12 @@ input[type="checkbox"] {
   height: 0px;
   position: absolute;
   border-left: 10px solid transparent;
-  border-right: 10px solid #c06154;
+  border-right: 10px solid #ecd2c5;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
   left: -23px;
   bottom: 37%;
+  z-index: 2;
 }
 
 .sb11:after {
@@ -333,12 +336,12 @@ input[type="checkbox"] {
   height: 0px;
   position: absolute;
   border-left: 10px solid transparent;
-  border-right: 10px solid #fff;
+  border-right: 10px solid #ecd2c5;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
   left: -17px;
   bottom: 37%;
-
+  z-index: 2;
 }
 
 
@@ -349,12 +352,13 @@ input[type="checkbox"] {
   width: 0px;
   height: 0px;
   position: absolute;
-  border-left: 10px solid #c06154;
+  border-left: 10px solid #ecd2c5;
   border-right: 10px solid transparent;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
   right: -23px;
   bottom: 37%;
+  z-index: 2;
 }
 
 .sb12:after {
@@ -362,12 +366,13 @@ input[type="checkbox"] {
   width: 0px;
   height: 0px;
   position: absolute;
-  border-left: 10px solid #fff;
+  border-left: 10px solid #ecd2c5;
   border-right: 10px solid transparent;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
   right: -17px;
   bottom: 37%;
+  z-index: 2;
 }
 
 textarea {
@@ -422,4 +427,174 @@ div> .prompt_change{
 
 #warmup_instruct{
   padding: 10px;
+}
+.save_button{
+  background-color: #ecd2c5;
+    border: none;
+    color: #8a7966;
+    padding: 12px 16px;
+    font-size: 12px;
+    position: relative;
+    right: 33%;
+    bottom: 5px;
+    cursor: pointer;
+    top: -7%;
+}
+.save_button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+#functions_tab{
+  width: 484px;
+  /* height: 30px; */
+  height: 49px;
+  position: relative;
+  display: none;
+  /* margin: 20px 20px 20px 20px; */
+  background-color: #C0AB92;
+  border-radius: 20px;
+}
+
+.knobs,
+.layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.button {
+  position: relative;
+    top: -41%;
+    left: 40%;
+    width: 74px;
+    height: 36px;
+    margin: -20px auto 0 auto;
+    overflow: hidden;
+}
+
+.button.r,
+.button.r .layer {
+  border-radius: 100px;
+}
+
+.checkboxname {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 3;
+  position: relative;
+  right: 12%;
+  bottom: -1px;
+}
+
+.knobs {
+  z-index: 2;
+}
+
+.layer {
+  width: 100%;
+  background-color: #ecd2c5;
+  transition: 0.3s ease all;
+  z-index: 1;
+}
+
+/* Button 1 */
+#button-1 .knobs:before {
+  content: "NO";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 20px;
+  height: 10px;
+  color: #fff;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1;
+  padding: 9px 4px;
+  background-color: #d45042;
+  border-radius: 50%;
+  transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+}
+
+#button-1 .checkboxname:checked + .knobs:before {
+  content: "YES";
+  left: 42px;
+  background-color: #1795cf
+}
+
+#button-1 .checkboxname:checked ~ .layer {
+  background-color: #ecd2c5;
+}
+
+#button-1 .knobs,
+#button-1 .knobs:before,
+#button-1 .layer {
+  transition: 0.3s ease all;
+}
+
+
+.model_button{
+  background-color: #ecd2c5;
+    border: none;
+    color: #8a7966;
+    padding: 12px 16px;
+    font-size: 12px;
+    position: relative;
+    right: 3%;
+    top: -134%;
+    cursor: pointer;
+}
+
+.popupformodel{
+  height: 49px;
+  width: 100px;
+  display: block;
+  background-color: white;
+  font-size: 15px;
+  top: -162%;
+  position: relative;
+  left: 24%;
+  border-radius: 10px;
+  padding: 4px;
+}
+
+.model_button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.dialogue_button{
+  background-color: #ecd2c5;
+    border: none;
+    color: #8a7966;
+    padding: 12px 16px;
+    font-size: 12px;
+    position: relative;
+    right: 4%;
+    top: -134%;
+    cursor: pointer;
+}
+
+.dialogue_button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.popupfordialogue{
+  overflow: scroll;
+    position: absolute;
+    height: 98px;
+    width: 143px;
+    background-color: white;
+    display: block;
+    font-size: 4px;
+    top: 61%;
+    left: 51%;
+    padding: 3px;
+    border-radius: 8px;
 }

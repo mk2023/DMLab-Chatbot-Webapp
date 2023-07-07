@@ -28,7 +28,7 @@ app.config['PRESENCE_PENALTY'] = float(os.environ.get('PRESENCE_PENALTY'))
 
 
 print(f"TURNS: {app.config['TURNS']}\n"\
-f"WARMUP: {app.config['WARMUP']}\n"\
+#f"WARMUP: {app.config['WARMUP']}\n"\
 f"TEMPERATURE: {app.config['TEMPERATURE']}\n"\
 f"MAX_TOKENS: {app.config['MAX_TOKENS']}\n"\
 f"TOP_P: {app.config['TOP_P']}\n"\
@@ -73,9 +73,10 @@ def skye_chat():
         "skye_says": response['choices'][0]['text'].replace("\n",""),
         "id_model_name": id_model_name
     }
-
+    print(f"{warmup}")
     print(f"[CHAT][{name}][{get_now_time()}]:: user : {text}")
     print(f'[CHAT][{name}][{get_now_time()}]:: skye : {res_send["skye_says"]}')
+    
 
     return jsonify(res_send)
 

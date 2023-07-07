@@ -7,6 +7,8 @@
 </style>
 
 <head>
+    
+    <script src="https://kit.fontawesome.com/eb947f2372.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <title>DMLab's Chat</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
@@ -14,7 +16,7 @@
 </head>
 
 <body>
-
+    
     <div class="chat_wrap">
         <div class="header">
             <input type="text" id="user_id"> CHATS WITH <span id="cb_name">AI</span>
@@ -30,7 +32,7 @@
                 </div>
             </div>
         </div>
-        <div class = "grid-container">
+        <div class = "grid-container" id = "grid">
 
             <div class = "popup" id = "adding" >
                 <div class = "button_adding" id="addBoxBtn" type="button">
@@ -75,7 +77,7 @@
         
 
         <div class="input-div">
-            <textarea placeholder="First input your name on the top of the screen" disabled="disabled" id="msg_chat"></textarea>
+            <textarea placeholder="First input your name on the top of the screen (only letters; no special characters nor spaces)" disabled="disabled" id="msg_chat"></textarea>
         </div>
 
         <!-- format -->
@@ -110,8 +112,36 @@
         </div>
         
         <div id = 'element_template'>
-            <button class = "close_button" type="button">X</button>
-            <input type="checkbox" class="checkboxname" value="value" checked />
+            <div class = "functions_tab" id="functions_tab">
+                <button class = "close_button" type="button"><i class="fa-solid fa-xmark"></i></button>
+                <!--input type="checkbox" class="checkboxname" value="value" checked-->
+                <button class="save_button">
+                    <i class="fa-solid fa-floppy-disk"></i> 
+                    Save
+                </button>
+                
+                <div class="button r " id="button-1">
+                    <input type="checkbox" class="checkboxname">
+                    <div class="knobs"></div>
+                    <div class="layer"></div>
+                </div>
+                
+                <button class = "model_button">
+                    <span>Model</span>
+                </button>
+                
+                <button class = "dialogue_button">
+                    <span>Dialogue</span>
+                </button>
+                
+                <div class = "popupformodel">
+                    
+                 </div>
+                 <div class = "popupfordialogue">
+                    
+                 </div>
+            </div>
+            
         </div>
     </div>
 
