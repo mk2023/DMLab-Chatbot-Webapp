@@ -563,6 +563,7 @@ div> .prompt_change{
   left: 24%;
   border-radius: 10px;
   padding: 4px;
+  z-index: 100;
 }
 
 .model_button:hover {
@@ -597,4 +598,5 @@ div> .prompt_change{
     left: 51%;
     padding: 3px;
     border-radius: 8px;
+    z-index: 100;
 }

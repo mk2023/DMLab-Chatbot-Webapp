@@ -395,8 +395,10 @@ var tmpfor = document.getElementById("grid").getElementsByClassName("popupformod
 document.addEventListener("click", function(event){
     if(event.target.closest(".chat")){
         var clickedchat = event.target;
-        clickedchat.querySelector('.functions_tab').querySelector('.popupformodel').style.display = "none";
-        clickedchat.querySelector('.functions_tab').querySelector('.popupfordialogue').style.display = "none";
+        if(clickedchat == document.querySelector('.model_button') || clickedchat.parentNode == document.querySelector('.model_button')) return;
+        if(clickedchat==document.querySelector('.dialogue_button') || clickedchat.parentNode == document.querySelector('.dialogue_button')) return;
+        clickedchat.parentNode.parentNode.querySelector('.functions_tab').querySelector('.popupformodel').style.display = "none";
+        clickedchat.parentNode.parentNode.querySelector('.functions_tab').querySelector('.popupfordialogue').style.display = "none";
     }
 })
 
